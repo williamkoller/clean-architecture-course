@@ -7,8 +7,12 @@
     "allowJs": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@test/*": ["test/*"]
+      "@/*": [
+        "src/*"
+      ],
+      "@test/*": [
+        "test/*"
+      ]
     }
   }
 }
