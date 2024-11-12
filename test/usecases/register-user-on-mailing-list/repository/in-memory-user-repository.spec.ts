@@ -5,8 +5,8 @@ import { InMemoryUserRepository } from '@/usecases/register-user-on-mailing-list
 describe('In memory user repository', () => {
   test('should return null if user is not found', async () => {
     const users: UserData[] = [];
-    const userRepo: UserRepository = new InMemoryUserRepository(users);
-    const user = await userRepo.findUserByEmail('any_email.com');
+    const sut: UserRepository = new InMemoryUserRepository(users);
+    const user = await sut.findUserByEmail('any_email.com');
     expect(user).toBeNull();
   });
 
@@ -14,9 +14,9 @@ describe('In memory user repository', () => {
     const users: UserData[] = [];
     const name = 'any_name';
     const email = 'any_email.com';
-    const userRepo: UserRepository = new InMemoryUserRepository(users);
-    await userRepo.add({ name, email });
-    const user = await userRepo.findUserByEmail(email);
+    const sut: UserRepository = new InMemoryUserRepository(users);
+    await sut.add({ name, email });
+    const user = await sut.findUserByEmail(email);
     expect(user.name).toBe('any_name');
   });
 
@@ -32,9 +32,8 @@ describe('In memory user repository', () => {
       },
     ];
 
-    const userRepo: UserRepository = new InMemoryUserRepository(users);
-
-    const usersList = await userRepo.findAllUsers();
+    const sut: UserRepository = new InMemoryUserRepository(users);
+    const usersList = await sut.findAllUsers();
     expect(usersList).toHaveLength(2);
     expect(usersList[0].name).toBe('any_name');
     expect(usersList[0].email).toBe('any_email.com');
